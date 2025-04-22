@@ -1,15 +1,19 @@
-# Cadastro de Pessoas - Sistema de Gerenciamento
+# 📋 Cadastro de Pessoas - Sistema de Gerenciamento
 
 ![.NET Version](https://img.shields.io/badge/.NET-8.0-blue)
 ![Angular](https://img.shields.io/badge/Angular-v15+-dd0031)
+![Azure Functions](https://img.shields.io/badge/Azure_Functions-v4-blue)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
 Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídicas, com validações específicas e arquitetura baseada em boas práticas modernas de desenvolvimento.
+
+---
 
 ## 🚀 Tecnologias Utilizadas
 
 - **Frontend**: [Angular](https://angular.io/)
 - **Backend**: [.NET 8.0+](https://dotnet.microsoft.com/en-us/)
+- **Serverless**: [Azure Functions](https://learn.microsoft.com/en-us/azure/azure-functions/)
 - **Banco de Dados**: à escolha do desenvolvedor (Ex: SQL Server, PostgreSQL, MySQL)
 - **Arquitetura**: DDD + CQRS + Event Sourcing
 
@@ -22,6 +26,49 @@ Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídica
 - Garantia de unicidade por CPF/CNPJ e E-mail
 - Cadastro completo com informações pessoais e endereço
 - Estrutura baseada em DDD, com CQRS e Event Sourcing
+- API em arquitetura Serverless com Azure Functions
+
+---
+
+## ⚙️ Instalação do Azure Functions
+
+Você pode instalar o Azure Functions Core Tools com o comando abaixo:
+
+```bash
+npm install -g azure-functions-core-tools@4 --unsafe-perm true
+```
+
+Mais informações na [documentação oficial](https://learn.microsoft.com/en-us/azure/azure-functions/functions-run-local).
+
+---
+
+## 📦 Estrutura das Azure Functions
+
+```
+backend/
+├── Functions/
+│   ├── CreatePersonFunction.cs
+│   ├── GetPersonByIdFunction.cs
+│   ├── GetAllPeopleFunction.cs
+│   ├── UpdatePersonFunction.cs
+│   └── DeletePersonFunction.cs
+├── Domain/
+├── Application/
+├── Infrastructure/
+└── Shared/
+```
+
+---
+
+## 📡 Endpoints da API (Azure Functions)
+
+| Método | Rota                    | Descrição                          |
+|--------|-------------------------|-------------------------------------|
+| POST   | `/api/person`           | Cadastrar nova pessoa              |
+| GET    | `/api/person/{id}`      | Obter pessoa por ID                |
+| GET    | `/api/person`           | Listar todas as pessoas            |
+| PUT    | `/api/person/{id}`      | Atualizar dados da pessoa          |
+| DELETE | `/api/person/{id}`      | Remover pessoa do sistema          |
 
 ---
 
@@ -36,7 +83,7 @@ Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídica
 
 ## 📄 Campos do Formulário
 
-### Dados Pessoais
+### 👤 Dados Pessoais
 
 - Nome / Razão Social  
 - CPF / CNPJ  
@@ -44,7 +91,7 @@ Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídica
 - Telefone  
 - E-mail  
 
-### Endereço
+### 🏠 Endereço
 
 - CEP  
 - Endereço  
@@ -59,8 +106,15 @@ Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídica
 
 ### Pré-requisitos
 
-- Angular CLI instalado (`npm install -g @angular/cli`)
+- Angular CLI instalado:
+  ```bash
+  npm install -g @angular/cli
+  ```
 - .NET 8 SDK instalado
+- Azure Functions Core Tools instalado:
+  ```bash
+  npm install -g azure-functions-core-tools@4 --unsafe-perm true
+  ```
 - Banco de dados configurado (Ex: SQL Server, PostgreSQL, etc.)
 
 ### Backend
@@ -69,40 +123,65 @@ Sistema full stack para cadastro e gerenciamento de pessoas físicas e jurídica
 cd backend
 dotnet restore
 dotnet build
-dotnet run
+func start
+```
 
 ### Frontend
 
 ```bash
-Copiar
-Editar
 cd frontend
 npm install
 ng serve
+```
 
-Acesse em: http://localhost:4200
+Acesse em: [http://localhost:4200](http://localhost:4200)
 
-🧪 Testes Unitários
-Para executar os testes no backend:
+---
+
+## 🧪 Testes Unitários
+
+### Backend
+
+```bash
 dotnet test
+```
 
-Para executar os testes no frontend:
+### Frontend
+
+```bash
 ng test
+```
 
-📁 Organização do Projeto
-frontend/: Código Angular
-backend/: Projeto .NET com estrutura DDD
+---
 
-📄 Licença
-Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+## 📁 Organização do Projeto
 
-🔗 Links Úteis
-Angular Documentation
+```
+📦 projeto-cadastro
+├── frontend/           # Código Angular
+└── backend/            # Azure Functions + .NET 8 com estrutura DDD
+    ├── Functions/
+    ├── Domain/
+    ├── Application/
+    ├── Infrastructure/
+    └── Shared/
+```
 
-.NET 8 Documentation
+---
 
-Guia de DDD
+## 📄 Licença
 
-CQRS Pattern
+Este projeto está licenciado sob a Licença **MIT** - veja o arquivo [LICENSE](./LICENSE) para mais detalhes.
 
-Event Sourcing
+---
+
+## 🔗 Links Úteis
+
+- [Angular Documentation](https://angular.io/docs)
+- [.NET 8 Documentation](https://learn.microsoft.com/en-us/dotnet/)
+- [Azure Functions Documentation](https://learn.microsoft.com/en-us/azure/azure-functions/)
+- [Guia de DDD - Martin Fowler](https://martinfowler.com/tags/domain%20driven%20design.html)
+- [CQRS Pattern](https://learn.microsoft.com/en-us/azure/architecture/patterns/cqrs)
+- [Event Sourcing](https://martinfowler.com/eaaDev/EventSourcing.html)
+
+---
