@@ -1,0 +1,40 @@
+version: '3.8'
+
+services:
+  backend:
+    image: mcr.microsoft.com/dotnet/aspnet:8.0
+    container_name: backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Server=db;Database=ProvaTesteDB;User Id=sa;Password=YourStrong!Password
+    depends_on:
+      - db
+
+  frontend:
+    image: node:18
+    container_name: frontend
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "4200:4200"
+    command: ["npm", "start"]
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: db
+    ports:
+      - "1433:1433"
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Password
+    volumes:
+      - db_data:/var/opt/mssql
+
+volumes:
+  db_data:
