@@ -46,29 +46,26 @@ Mais informações na [documentação oficial](https://learn.microsoft.com/en-us
 
 ```
 backend/
-├── Functions/
-│   ├── CreatePersonFunction.cs
-│   ├── GetPersonByIdFunction.cs
-│   ├── GetAllPeopleFunction.cs
-│   ├── UpdatePersonFunction.cs
-│   └── DeletePersonFunction.cs
-├── Domain/
-├── Application/
-├── Infrastructure/
-└── Shared/
+├── ProvaTeste.Functions/
+│   ├── Functions
+│       ├── ClientFunction.cs
+├── ProvaTeste.Domain/
+├── ProvaTeste.Application/
+├── ProvaTeste.Infrastructure/
+└── ProvaTeste.Test/
 ```
 
 ---
 
 ## 📡 Endpoints da API (Azure Functions)
 
-| Método | Rota                    | Descrição                          |
-|--------|-------------------------|-------------------------------------|
-| POST   | `/api/person`           | Cadastrar nova pessoa              |
-| GET    | `/api/person/{id}`      | Obter pessoa por ID                |
-| GET    | `/api/person`           | Listar todas as pessoas            |
-| PUT    | `/api/person/{id}`      | Atualizar dados da pessoa          |
-| DELETE | `/api/person/{id}`      | Remover pessoa do sistema          |
+| Método | Rota                                  | Descrição                          |
+|--------|---------------------------------------|-------------------------------------|
+| POST   | `/api/Client/CreateClient`            | Cadastrar nova pessoa              |
+| GET    | `/api/Client/GetClientById/{id}`      | Obter pessoa por ID                |
+| GET    | `/api/Client/GetAllClients`           | Listar todas as pessoas            |
+| PUT    | `/api/Client/UpdateClient/{id}`       | Atualizar dados da pessoa          |
+| DELETE | `/api/Client/DeleteClient/{id}`       | Remover pessoa do sistema          |
 
 ---
 
@@ -157,14 +154,14 @@ ng test
 ## 📁 Organização do Projeto
 
 ```
-📦 projeto-cadastro
+📦 ProvaTeste
 ├── frontend/           # Código Angular
 └── backend/            # Azure Functions + .NET 8 com estrutura DDD
-    ├── Functions/
-    ├── Domain/
-    ├── Application/
-    ├── Infrastructure/
-    └── Shared/
+    ├── ProvaTeste/Functions/
+    ├── ProvaTeste/Domain/
+    ├── ProvaTeste/Application/
+    ├── ProvaTeste/Infrastructure/
+    ├── ProvaTeste/Test/
 ```
 
 ---
