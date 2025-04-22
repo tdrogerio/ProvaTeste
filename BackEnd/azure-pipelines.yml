@@ -1,0 +1,90 @@
+trigger:
+- Sprint5
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureServiceConnection: 'provateste'  # Replace with your Azure DevOps service connection name
+  functionAppName: 'provatestemdev'  # Replace with your Azure Function App name
+  outputPath: '$(Build.ArtifactStagingDirectory)/publish'
+  sonarCloudService: 'SonarCloud-Service-Connection'  # Replace with your SonarCloud service connection
+  sonarProjectKey: 'your-project-key'  # Replace with your SonarCloud project key
+  sonarOrganization: 'your-org'  # Replace with your SonarCloud organization
+
+steps:
+# Install .NET SDK
+- task: UseDotNet@2
+  displayName: 'Install .NET SDK'
+  inputs:
+    packageType: 'sdk'
+    version: '8.x'
+    installationPath: $(Agent.ToolsDirectory)/dotnet
+
+# **SonarCloud Prepare Analysis Configuration**
+#- task: SonarCloudPrepare@1
+#  displayName: 'Prepare SonarCloud Analysis'
+#  inputs:
+#    SonarCloud: '$(sonarCloudService)'
+#    organization: '$(sonarOrganization)'
+#    scannerMode: 'CLI'
+#    configMode: 'manual'
+#    projectKey: '$(sonarProjectKey)'
+#    projectName: 'ProvaTeste.Function'
+#    extraProperties: |
+#      sonar.projectVersion=1.0
+#      sonar.sourceEncoding=UTF-8
+#      sonar.exclusions=**/*.test.cs, **/node_modules/**
+
+# Restore Dependencies
+- task: DotNetCoreCLI@2
+  displayName: 'Restore Dependencies'
+  inputs:
+    command: 'restore'
+    projects: $(Build.SourcesDirectory)/src
+
+# **Run Tests with SonarCloud Coverage**
+#- task: DotNetCoreCLI@2
+#  displayName: 'Test Solution'
+#  inputs:
+#    command: 'test'
+#    projects: $(Build.SourcesDirectory)/src
+#    arguments: '--configuration Release --collect:"XPlat Code Coverage"'
+#    publishTestResults: true
+
+# **Build Project**
+- task: DotNetCoreCLI@2
+  displayName: 'Build Solution'
+  inputs:
+    command: 'build'
+    projects: $(Build.SourcesDirectory)/src
+    arguments: '--configuration Release'
+
+# **Run SonarCloud Analysis**
+#- task: SonarCloudAnalyze@1
+#  displayName: 'Run SonarCloud Analysis'
+
+# **Publish SonarCloud Quality Gate**
+#- task: SonarCloudPublish@1
+#  displayName: 'Publish SonarCloud Quality Gate Results'
+#  inputs:
+#    pollingTimeoutSec: '300'
+
+# **Publish Solution**
+- task: DotNetCoreCLI@2
+  displayName: 'Publish Solution'
+  inputs:
+    command: 'publish'
+    publishWebProjects: false
+    projects: $(Build.SourcesDirectory)/src/**/ProvaTeste.Function.csproj
+    arguments: '--configuration Release --output $(outputPath)'
+    zipAfterPublish: true
+
+# **Deploy to Azure Function**
+- task: AzureFunctionApp@1
+  displayName: 'Deploy to Azure Function App'
+  inputs:
+    azureSubscription: '$(azureServiceConnection)'
+    appType: 'functionApp'
+    appName: '$(functionAppName)'
+    package: '$(outputPath)/ProvaTeste.Function.zip'

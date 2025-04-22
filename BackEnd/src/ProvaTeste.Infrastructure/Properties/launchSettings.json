@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ProvaTeste.Infraestructure": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "SQLCONNSTR_AZURE_SQL_CONNECTIONSTRING" : "Server=provateste.database.windows.net;Database=provateste;User Id=provateste;Password=provateste@2025;MultipleActiveResultSets=true;"
+      }
+    }
+  }
+}

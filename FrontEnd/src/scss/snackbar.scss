@@ -1,0 +1,178 @@
+// Estilos para Snackbars
+.mat-mdc-snack-bar-container {
+  --snackbar-border-radius: 4px;
+  --snackbar-padding: 16px;
+  position: fixed !important;
+  right: 16px !important;
+  margin: 16px !important;
+  min-width: 300px !important;
+  max-width: 400px !important;
+  
+  &.success-snackbar {
+    --mdc-snackbar-container-color: #86efac;
+    --mat-mdc-snack-bar-button-color: #15803d;
+    --mdc-snackbar-supporting-text-color: #166534;
+    
+    .mdc-snackbar__surface {
+      background-color: #86efac !important;
+      border-left: 4px solid #15803d !important;
+    }
+
+    .progress-bar {
+      background-color: #15803d !important;
+    }
+
+    .mdc-snackbar__label {
+      color: #166534 !important;
+    }
+
+    .mat-mdc-snack-bar-actions button {
+      color: #166534 !important;
+    }
+  }
+
+  &.error-snackbar {
+    --mdc-snackbar-container-color: #ef4444;
+    --mat-mdc-snack-bar-button-color: #ffffff;
+    --mdc-snackbar-supporting-text-color: #ffffff;
+    
+    .mdc-snackbar__surface {
+      background-color: #ef4444 !important;
+      border-left: 4px solid #991b1b !important;
+    }
+
+    .progress-bar {
+      background-color: #991b1b !important;
+    }
+
+    .mdc-snackbar__label {
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    .mat-mdc-snack-bar-actions button {
+      color: #ffffff !important;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+    }
+  }
+
+  &.warning-snackbar {
+    --mdc-snackbar-container-color: #fcd34d;
+    --mat-mdc-snack-bar-button-color: #92400e;
+    --mdc-snackbar-supporting-text-color: #92400e;
+    
+    .mdc-snackbar__surface {
+      background-color: #fcd34d !important;
+      border-left: 4px solid #d97706 !important;
+    }
+
+    .progress-bar {
+      background-color: #d97706 !important;
+    }
+
+    .mdc-snackbar__label {
+      color: #92400e !important;
+    }
+
+    .mat-mdc-snack-bar-actions button {
+      color: #92400e !important;
+    }
+  }
+
+  &.info-snackbar {
+    --mdc-snackbar-container-color: #93c5fd;
+    --mat-mdc-snack-bar-button-color: #1e40af;
+    --mdc-snackbar-supporting-text-color: #1e40af;
+    
+    .mdc-snackbar__surface {
+      background-color: #93c5fd !important;
+      border-left: 4px solid #1d4ed8 !important;
+    }
+
+    .progress-bar {
+      background-color: #1d4ed8 !important;
+    }
+
+    .mdc-snackbar__label {
+      color: #1e40af !important;
+    }
+
+    .mat-mdc-snack-bar-actions button {
+      color: #1e40af !important;
+    }
+  }
+
+  // Estilos comuns para todos os snackbars
+  .mdc-snackbar__surface {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    border-radius: var(--snackbar-border-radius) !important;
+    padding: var(--snackbar-padding) !important;
+    min-height: auto !important;
+    position: relative !important;
+  }
+
+  .mat-mdc-snack-bar-actions {
+    button {
+      font-weight: bold !important;
+      font-size: 24px !important;
+      padding: 0 8px !important;
+      min-width: 24px !important;
+      margin-left: 8px !important;
+      font-family: sans-serif !important;
+      line-height: 24px !important;
+    }
+  }
+
+  .mdc-snackbar__label {
+    font-weight: 600 !important;
+    letter-spacing: 0 !important;
+    padding: 0 !important;
+    font-size: 14px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+
+    .snackbar-icon {
+      font-family: 'Material Icons' !important;
+      font-size: 20px !important;
+      display: flex !important;
+      align-items: center !important;
+    }
+  }
+
+  // Barra de progresso
+  .progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    animation: progress 5s linear;
+  }
+}
+
+// Animação para a barra de progresso
+@keyframes progress {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0%;
+  }
+}
+
+// Animação para entrada do snackbar
+.snackbar-animation {
+  animation: slideLeft 0.3s ease-out;
+}
+
+@keyframes slideLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

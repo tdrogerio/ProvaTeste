@@ -1,0 +1,62 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+::ng-deep .mat-mdc-tab-body-wrapper {
+  flex: 1;
+}
+
+.tab-content {
+  padding: 16px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+  flex: 1 1 100%;
+  min-width: 200px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.small-input {
+  flex: 1 1 30%;
+}
+
+.medium-input {
+  flex: 1 1 45%;
+}
+
+.large-input {
+  flex: 1 1 100%;
+}
+
+::ng-deep .mat-mdc-tab-group {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 600px) {
+  .tab-content {
+    padding: 10px;
+    
+    .form-row {
+      gap: 10px;
+      flex-direction: column;
+      
+      mat-form-field, mat-checkbox {
+        flex: 1 1 100%;
+        min-width: 100%;
+        width: 100%;
+      }
+    }
+  }
+}

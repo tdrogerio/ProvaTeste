@@ -1,0 +1,56 @@
+<div class="generic-form-container">
+  <div class="header">
+    <button mat-icon-button *ngIf="config.showBackButton" (click)="onCancel()">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h2>{{config.title}}</h2>
+  </div>
+
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form">
+        <div class="form-row">
+          @for (field of config.fields; track field.name) {
+            <mat-form-field appearance="outline" [class]="field.size || 'full-width'">
+              <mat-label>{{field.label}}</mat-label>
+              
+              @switch (field.type) {
+                @case ('text') {
+                  <input matInput [formControlName]="field.name">
+                }
+                @case ('email') {
+                  <input matInput type="email" [formControlName]="field.name">
+                }
+                @case ('mask') {
+                  <input matInput [formControlName]="field.name" [mask]="field.mask || ''">
+                }
+                @case ('select') {
+                  <mat-select [formControlName]="field.name">
+                    @for (option of field.options; track option.value) {
+                      <mat-option [value]="option.value">{{option.label}}</mat-option>
+                    }
+                  </mat-select>
+                }
+              }
+            </mat-form-field>
+          }
+        </div>
+
+        <div class="actions">
+          <ng-container *ngIf="!isViewing; else viewMode">
+            <button mat-raised-button color="primary" (click)="onSubmit()" [disabled]="!form.valid">
+              {{config.submitLabel || 'Salvar'}}
+            </button>
+            <button mat-button (click)="onCancel()">
+              {{config.cancelLabel || 'Cancelar'}}
+            </button>
+          </ng-container>
+          
+          <ng-template #viewMode>
+            <button mat-button (click)="onCancel()">Voltar</button>
+          </ng-template>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div> 

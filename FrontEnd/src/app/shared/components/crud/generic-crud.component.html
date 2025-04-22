@@ -1,0 +1,58 @@
+<div class="generic-crud-container">
+  <!-- Table (List) View -->
+  <div *ngIf="!showSteps" class="list-view">
+    <div class="header">
+      <mat-form-field appearance="outline" class="filter-field">
+        <mat-label>Filtrar</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Pesquisar..." />
+        <mat-icon matPrefix>search</mat-icon>
+      </mat-form-field>
+
+      <div class="action-buttons">
+        <button *ngIf="enableCreate" mat-raised-button color="primary" (click)="onAddNew()">
+          <mat-icon>add</mat-icon>
+          Novo {{ title }}
+        </button>
+        <button mat-raised-button color="accent" (click)="onGenerateReport()">
+          <mat-icon>description</mat-icon>
+          Gerar Relatório
+        </button>
+      </div>
+    </div>
+
+    <mat-card>
+      <mat-card-content>
+        <!-- Projeção de conteúdo para a tabela -->
+        <ng-content></ng-content>
+      </mat-card-content>
+    </mat-card>
+
+    <mat-paginator
+      [pageSizeOptions]="[5, 10, 25, 100]"
+      [length]="totalItems"
+      [pageSize]="pageSize"
+      [pageIndex]="currentPage"
+      [disabled]="false"
+      (page)="onPageChange($event)"
+      aria-label="Selecionar página">
+    </mat-paginator>
+  </div>
+
+  <!-- Form (Wizard/Steps) View -->
+  <div *ngIf="showSteps" class="form-view">
+    <div class="header">
+      <h2>{{ headerTitle }}</h2>
+    </div>
+
+    <app-generic-steps
+      [steps]="steps"
+      [form]="form"
+      [linear]="true"
+      [isEditing]="isEditing"
+      [isViewing]="isViewing"
+      [buttonText]="submitButtonText"
+      (cancel)="onCancelSteps()"
+      (submitForm)="onSave()">
+    </app-generic-steps>
+  </div>
+</div>

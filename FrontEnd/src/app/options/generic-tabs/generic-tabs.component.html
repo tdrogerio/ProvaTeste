@@ -1,0 +1,54 @@
+<form [formGroup]="form">
+  <mat-tab-group>
+    @for (tab of tabs; track tab) {
+      <mat-tab [label]="tab.label">
+        <div class="tab-content">
+          @for (field of tab.content; track field) {
+            <div [class]="field.class || 'form-row'" [style.width]="field.width ?? ''">
+              @switch (field.type) {
+                @case ('input') {
+                  <mat-form-field [appearance]="field.appearance === 'fill' ? 'fill' : 'outline'" [class]="field.class || 'form-row'">
+                    <mat-label>{{field.label}}</mat-label>
+                    <input matInput 
+                           [formControlName]="field.formControlName ?? ''"
+                           [mask]="field.mask ?? ''"
+                           [placeholder]="field.label ?? ''">
+                  </mat-form-field>
+                }
+                @case ('select') {
+                  <mat-form-field [appearance]="field.appearance === 'fill' ? 'fill' : 'outline'" [class]="field.class || 'form-row'">
+                    <mat-label>{{field.label}}</mat-label>
+                    <mat-select [formControlName]="field.formControlName || ''">
+                      @for (option of field.options; track option) {
+                        <mat-option [value]="option">{{option}}</mat-option>
+                      }
+                    </mat-select>
+                  </mat-form-field>
+                }
+                @case ('checkbox') {
+                  <mat-checkbox [formControlName]="field.formControlName || ''">
+                    {{field.label}}
+                  </mat-checkbox>
+                }
+                @case ('datepicker') {
+                  <mat-form-field [appearance]="field.appearance === 'fill' ? 'fill' : 'outline'" [class]="field.class || 'form-row'">
+                    <mat-label>{{field.label}}</mat-label>
+                    <input matInput [matDatepicker]="picker" [formControlName]="field.formControlName || ''">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                  </mat-form-field>
+                }
+                @case ('textarea') {
+                  <mat-form-field [appearance]="field.appearance === 'fill' ? 'fill' : 'outline'" class="full-width">
+                    <mat-label>{{field.label}}</mat-label>
+                    <textarea matInput [formControlName]="field.formControlName || ''" [rows]="field.rows || 3"></textarea>
+                  </mat-form-field>
+                }
+              }
+            </div>
+          }
+        </div>
+      </mat-tab>
+    }
+  </mat-tab-group>
+</form>

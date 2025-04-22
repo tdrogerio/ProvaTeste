@@ -1,0 +1,11 @@
+<button 
+  [ngClass]="[sizeClass, colorClass]"
+  [class]="customClass"
+  mat-button
+  [class.mat-raised-button]="type === 'raised'"
+  [class.mat-stroked-button]="type === 'stroked'"
+  [class.mat-flat-button]="type === 'flat'"
+  [disabled]="disabled"
+  (click)="onClick.emit($event)">
+  <ng-content></ng-content>
+</button>

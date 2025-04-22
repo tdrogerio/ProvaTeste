@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>{{ config.titulo }}</h2>
+
+<mat-dialog-content>
+  <!-- Formulário de E-mail -->
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Digite seu e-mail</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+        E-mail é obrigatório.
+      </mat-error>
+      <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+        E-mail inválido.
+      </mat-error>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button (click)="fechar(false)">Cancelar</button>
+  <button mat-raised-button color="primary" (click)="onSubmit()" type="submit">Confirmar</button>
+</mat-dialog-actions>

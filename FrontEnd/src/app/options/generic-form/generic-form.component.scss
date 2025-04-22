@@ -1,0 +1,43 @@
+.generic-form-container {
+  .header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1%;
+    
+    h2 {
+      margin: 0;
+      margin-left: 1%;
+    }
+  }
+
+  mat-form-field {
+    display: block;
+    margin-bottom: 0 px;
+    
+    &.full-width {
+      width: 100%;
+    }
+    
+    &.medium-width {
+      width: 400px;
+    }
+    
+    &.small-width {
+      width: 200px;
+    }
+
+  }
+
+  .form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .actions {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    margin-top: 24px;
+  }
+} 

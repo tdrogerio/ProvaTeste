@@ -1,0 +1,43 @@
+.report-filters-container {
+  padding: 16px;
+  
+  mat-dialog-content {
+    min-height: 200px;
+    max-height: 80vh;
+  }
+
+  .filter-field {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  ::ng-deep {
+    .custom-datepicker {
+      transform-origin: top left;
+    }
+
+    .mat-calendar {
+      min-width: 100% !important;
+    }
+
+    .mat-mdc-form-field {
+      .mat-mdc-text-field-wrapper {
+        background-color: transparent;
+      }
+    }
+
+    .mat-mdc-dialog-content {
+      max-height: none;
+      padding: 20px 0;
+    }
+
+    .mat-mdc-dialog-actions {
+      padding: 16px 0 0;
+      margin-bottom: 0;
+    }
+  }
+
+  mat-dialog-actions {
+    gap: 8px;
+  }
+} 

@@ -1,0 +1,177 @@
+<div class="clients-container" [class.loading]="isLoading">
+  <app-loading *ngIf="isLoading" [overlay]="true" [diameter]="50" [color]="'primary'"></app-loading>
+  
+  <app-generic-crud
+    [dataSource]="dataSource"
+    [form]="editForm"
+    [steps]="steps"
+    [showSteps]="showSteps"
+    [title]="title"
+    [isEditing]="isEditing"
+    [isViewing]="isViewing"
+    [editingItem]="editingItem"
+    [pageSize]="pageSize"
+    [currentPage]="currentPage"
+    [totalItems]="totalItems"
+    (edit)="onEdit($event)"
+    (view)="onView($event)"
+    (delete)="onDelete($event)"
+    (save)="onSave()"
+    (cancel)="onCancel()"
+    (pageChange)="onPageChange($event)"
+    (addNew)="onAddNew()">
+
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+        <!-- Colunas da tabela -->
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef> ID </th>
+          <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Nome </th>
+          <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="document">
+          <th mat-header-cell *matHeaderCellDef> Documento </th>
+          <td mat-cell *matCellDef="let row"> {{row.document}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="clientType">
+          <th mat-header-cell *matHeaderCellDef> Tipo </th>
+          <td mat-cell *matCellDef="let row"> {{row.clientType === 'Individual' ? 'Pessoa Física' : 'Pessoa Jurídica'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="phone">
+          <th mat-header-cell *matHeaderCellDef> Telefone </th>
+          <td mat-cell *matCellDef="let row"> {{row.phone}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef> Email </th>
+          <td mat-cell *matCellDef="let row"> {{row.email}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions">
+          <th mat-header-cell *matHeaderCellDef> Ações </th>
+          <td mat-cell *matCellDef="let row">
+            <div class="custom-actions">
+              <button mat-icon-button color="primary" (click)="onView(row)" matTooltip="Visualizar">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="primary" (click)="onEdit(row)" matTooltip="Editar">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="onDelete(row.id)" matTooltip="Excluir">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="7">Nenhum cliente encontrado</td>
+        </tr>
+      </table>
+    </div>
+
+    <!-- Formulário de edição -->
+    <div *ngIf="showSteps" class="form-container">
+      <form [formGroup]="editForm" class="client-form">
+        <div class="form-container">
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Nome</mat-label>
+            <input matInput formControlName="name" placeholder="Nome do cliente">
+            <mat-error *ngIf="isFieldInvalid('name')">{{getErrorMessage('name')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Documento</mat-label>
+            <input matInput formControlName="document" placeholder="CPF ou CNPJ">
+            <mat-error *ngIf="isFieldInvalid('document')">{{getErrorMessage('document')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Tipo de Cliente</mat-label>
+            <mat-select formControlName="clientType">
+              <mat-option [value]="ClientType.Individual">Pessoa Física</mat-option>
+              <mat-option [value]="ClientType.Business">Pessoa Jurídica</mat-option>
+            </mat-select>
+            <mat-error *ngIf="isFieldInvalid('clientType')">{{getErrorMessage('clientType')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Telefone</mat-label>
+            <input matInput formControlName="phone" placeholder="Telefone">
+            <mat-error *ngIf="isFieldInvalid('phone')">{{getErrorMessage('phone')}}</mat-error>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Email</mat-label>
+            <input matInput formControlName="email" placeholder="Email">
+            <mat-error *ngIf="isFieldInvalid('email')">{{getErrorMessage('email')}}</mat-error>
+          </mat-form-field>
+
+          <div formGroupName="address">
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>CEP</mat-label>
+              <input matInput formControlName="cep" placeholder="CEP">
+              <mat-error *ngIf="isFieldInvalid('address.cep')">{{getErrorMessage('address.cep')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Rua</mat-label>
+              <input matInput formControlName="street" placeholder="Rua">
+              <mat-error *ngIf="isFieldInvalid('address.street')">{{getErrorMessage('address.street')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Número</mat-label>
+              <input matInput formControlName="number" placeholder="Número">
+              <mat-error *ngIf="isFieldInvalid('address.number')">{{getErrorMessage('address.number')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Bairro</mat-label>
+              <input matInput formControlName="neighborhood" placeholder="Bairro">
+              <mat-error *ngIf="isFieldInvalid('address.neighborhood')">{{getErrorMessage('address.neighborhood')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Cidade</mat-label>
+              <input matInput formControlName="city" placeholder="Cidade">
+              <mat-error *ngIf="isFieldInvalid('address.city')">{{getErrorMessage('address.city')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Estado</mat-label>
+              <input matInput formControlName="state" placeholder="Estado">
+              <mat-error *ngIf="isFieldInvalid('address.state')">{{getErrorMessage('address.state')}}</mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="outline" class="full-width">
+              <mat-label>Complemento</mat-label>
+              <input matInput formControlName="complement" placeholder="Complemento">
+            </mat-form-field>
+          </div>
+
+          <div class="button-container">
+            <button mat-raised-button color="primary" type="submit" [disabled]="!editForm.valid || isViewing">
+              <mat-icon>{{editForm.get('id')?.value ? 'update' : 'add'}}</mat-icon>
+              {{editForm.get('id')?.value ? 'Atualizar' : 'Criar'}}
+            </button>
+            <button mat-raised-button color="warn" type="button" (click)="onCancel()" *ngIf="!isViewing">
+              <mat-icon>cancel</mat-icon>
+              Cancelar
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </app-generic-crud>
+</div> 

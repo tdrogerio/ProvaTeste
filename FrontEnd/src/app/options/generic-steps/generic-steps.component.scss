@@ -1,0 +1,169 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.step-content {
+  padding: 24px 0;
+  min-height: 200px;
+  max-height: 60vh;
+  overflow-y: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.form-row {
+  margin-bottom: 16px;
+  flex: 1 1 100%;
+  min-width: 200px;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.small-input {
+  flex: 1 1 30%;
+}
+
+.medium-input {
+  flex: 1 1 45%;
+}
+
+.large-input {
+  flex: 1 1 100%;
+}
+
+mat-error {
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.mat-form-field-invalid {
+  margin-bottom: 8px;
+}
+
+.file-upload-container {
+  width: 100%;
+  padding: 16px;
+  border: 1px dashed #ccc;
+  border-radius: 4px;
+  background-color: #fafafa;
+  margin-bottom: 16px;
+}
+
+.file-input-wrapper {
+  margin: 8px 0;
+}
+
+.file-input-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.file-input {
+  width: 100%;
+  padding: 8px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.file-input::-webkit-file-upload-button {
+  visibility: hidden;
+  width: 0;
+}
+
+.file-input::before {
+  content: 'Selecionar arquivo';
+  display: inline-block;
+  background: #1976d2;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 16px;
+  outline: none;
+  white-space: nowrap;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.3s;
+}
+
+.file-input:hover::before {
+  background: #1565c0;
+}
+
+.file-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.file-list {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.file-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background-color: #f5f5f5;
+  border-radius: 4px;
+}
+
+.file-name {
+  flex: 1;
+  margin-right: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.file-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+  margin-bottom: 16px;
+
+  table {
+    width: 100%;
+  }
+
+  td.mat-cell {
+    padding: 8px;
+  }
+
+  .mat-form-field {
+    margin: -16px 0;
+  }
+
+  .mat-datepicker-toggle {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}

@@ -1,0 +1,60 @@
+// Tamanhos para campos de formulário
+.input-sizes {
+  // Tamanhos padrão
+  --input-xs: 100px;
+  --input-small: 200px;
+  --input-medium: 300px;
+  --input-large: 400px;
+  --input-xl: 500px;
+  --input-full: 100%;
+
+  // Classes de tamanho
+  &.xs-width {
+    width: var(--input-xs);
+  }
+
+  &.small-width {
+    width: var(--input-small);
+  }
+
+  &.medium-width {
+    width: var(--input-medium);
+  }
+
+  &.large-width {
+    width: var(--input-large);
+  }
+
+  &.xl-width {
+    width: var(--input-xl);
+  }
+
+  &.full-width {
+    width: var(--input-full);
+  }
+}
+
+// Classes diretas para uso
+.xs-width {
+  width: var(--input-xs, 100px);
+}
+
+.small-width {
+  width: var(--input-small, 200px);
+}
+
+.medium-width {
+  width: var(--input-medium, 300px);
+}
+
+.large-width {
+  width: var(--input-large, 400px);
+}
+
+.xl-width {
+  width: var(--input-xl, 500px);
+}
+
+.full-width {
+  width: var(--input-full, 100%);
+} 

@@ -1,0 +1,16 @@
+{
+  "profiles": {
+    "ProvaTeste.Function": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7254",
+      "launchBrowser": false,
+      "environmentVariables": {
+        "SQLCONNSTR_AZURE_SQL_CONNECTIONSTRING": "Server=provateste.database.windows.net;Database=provateste;User Id=provateste;Password=provateste@2025;MultipleActiveResultSets=true;",
+        "APPSETTING_APPLICATIONINSIGHTS_CONNECTION_STRING": "InstrumentationKey=8cfb129d-0610-413c-95c5-f78a07f1538b;IngestionEndpoint=https://brazilsouth-1.in.applicationinsights.azure.com/;LiveEndpoint=https://brazilsouth.livediagnostics.provateste.azure.com/;ApplicationId=b11e8603-d8f9-4d5f-a67c-e18e6e0a3b6f",
+        "APPSETTING_JWT_KEYPRIVATE": "MIIEowIBAAKCAQEA1aEslh4FZBo5eS4YsRM59WC9PI9Mrz7M53Q7nbNXzds8hia4x0A2GwUJKpVgKpW7OLjbpA+egmcLYc80tJyqM8gY1VQax8ZTKrClPAU9JsVokTbDYrBeb4iB48x/hWGxDztN4m7MwC/mPBTO+dvQdeEej1hkblfwdEHqU3vssYcfGzP6BXIDVmuEcPO1v+ckqcToYL04lWKZgJQm+/U0E51zWgxeN8Rz0PNeR9VFRVw/vTop5LBYdv9iPI3m6nnGjpZHZu37H0+lW/hrsUpi9RF0VRen41aC4QityNJDfyNio3ruT2qttJlcu0jbJ/KIP6nQJrnV+hWi5HgkvX0PdQIDAQABAoIBAEHOnKId6wFcmavyZzhH8Uq0tNVSDe7df52tJGuliZR1XQa38YwKwY1f6gPJdIkbCyTGbXbP44mTGQaSh0KFmh3vjM5A0UXcKb4DsynJYYv2l6+R4DLwbMZAU7YODj5WS/uj8Ks12E5JYo+iwigXpsPAm6LTNVoyVmkRnlCkfV+kxXaLPwz7NEHYaRtQqKCFeTfwRqlg/RZztHn1BKmRT24eZQBELxQnsIGpLXEQQkC9mvd+nNCzxTCRXr7oDPUipt6lqXd44HeXfB+VW4WP6M5P/BDuZcx7UtnPTNFXHfINfBcSmpOf51wEZY7FAW/7kOma+DGLvA93BURCaHUxEbECgYEA+XTbXEHAtFSmU34iqPkZ3V19vfl0nUM1/rDHMm7GN2rlAWhej8Uk6Tfjg+QN5yrG2HNaCTSfX/wRYHPGWvsi+N7DrmuWgkUOvyieGCsQ5O3zOtIZFUfxi+ae9vF5atwl1cwr/SHloClC/RCpLbjdgi71VdfDquYggNtZAQr5qQsCgYEA3DIHcKzKGmsDw+3aOIYGD3GnHQji8II0neXxWQiZTAoAslse3MJROub8m3GdPptgBDypGlQNOj8JUodumRBOPp2t6mC+bumJpxddcgDbassLJA1UlaCGi9NplDC0taxfIk6wlUuLvVuAvXelVGuAz/9Vizc41c5Gr+Bem620eX8CgYEA6/lyBJyimTO2PycDzIoPwIrPBuWyPY21xx8c4AVP9l5lEWbUhPX+C6v1ye7yg+nAPkMoOasQ1HCTU4VRbwFAPOIlg5p8vvBqmcPngX9DtPuu6caTOcFbqnbXi0w0CjUEiXFhb0wgdthxaQjYsMq+p4aaR8EadFDLEHnugQEL2K8CgYBfQkV1uUq1oxY97Og7C8ATbledd/q1kZ6xsIh4u/+Vpb4nasQvPOFnWgZuOPiN3Snsq1F80l/mkt61lWGDVkqDTDOw8alw0hd68eC7MSO7T5vCPQIauRd75joGoguLjMabUO+TptsNUEihruEXZGqVkSCw2XL9DAAIlkhXkQ5CgQKBgFKLUg9fZKJiy9ElziShGmPrtUdZeYzeWZQlkIgbTU/Ui2NWSkAtkzJAFqVk/Pm9xVPdELs6yJwioFOuyxzmIc3SgA4OaVBv8198e1Z55XfqBnY48WX9AdZ9gvXsTg4ye/prU4H8tLnd1Zs1Hsl3pHsiluc9VfMS4EI8a5sM86w3",
+        "APPSETTING_JWT_KEYPUBLIC": "MIIBCgKCAQEA1pEslh4FZBo5eS3YsRM59WC9PI9MrzGM53Q7nbNXzds8hia4x0A20wUJKpVgKpW7OLjbpA+egmcLYc8qtJyqM8gY1VQax8ZTK6dlPAh9JsVokTbDYrBeb4iB48x/hWGxDztN4m7MwC/mPBTO+dvQdeEej1hkblfwdEHqU3vssYcfGzP6BXIDVmuEcPO1v+ckqcToYL04lWKZgJQm+/U0E51zWgxeN8Rz0PNeR9VFRVw/vTop5LBYdv9iPI3m6nnGjpZHZu37H0+lW/hrsUpi9RF0VRen41aC4QityNJDfyNio3ruT2qttJlcu0jbJ/KIP6nQJrnV+hWi5HgkvX0PdQIDAQAB",
+        "APPSETTING_JWT_ISSUER": "mobitech.com.br",
+        "APPSETTING_JWT_AUDIENCE": "mobitech.com.br"
+    }
+  }
+}

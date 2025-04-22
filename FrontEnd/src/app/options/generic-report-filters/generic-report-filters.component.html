@@ -1,0 +1,67 @@
+<div class="report-filters-container">
+  <h2 mat-dialog-title>{{config.title}}</h2>
+  <mat-dialog-content>
+    <form [formGroup]="filterForm">
+      <!-- Status Filter -->
+      <mat-form-field class="filter-field" *ngIf="config.statusFilter">
+        <mat-label>{{config.statusFilter.label}}</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="">Todos</mat-option>
+          <mat-option *ngFor="let option of config.statusFilter.options"
+                     [value]="option.value">
+            {{option.label}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- Date Range Filter -->
+      <mat-form-field class="filter-field" *ngIf="config.dateFilter?.enabled">
+        <mat-label>Período</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate
+                 formControlName="startDate"
+                 [placeholder]="config.dateFilter?.startLabel || 'Data inicial'">
+          <input matEndDate
+                 formControlName="endDate"
+                 [placeholder]="config.dateFilter?.endLabel || 'Data final'">
+        </mat-date-range-input>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker
+                              panelClass="custom-datepicker"
+                              startView="multi-year">
+        </mat-date-range-picker>
+        <mat-error *ngIf="filterForm.errors?.['dateRange']">
+          Data final deve ser maior que a data inicial
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Additional Filters -->
+      <ng-container *ngFor="let filter of config.additionalFilters">
+        <mat-form-field class="filter-field">
+          <mat-label>{{filter.label}}</mat-label>
+          <ng-container [ngSwitch]="filter.type">
+            <mat-select *ngSwitchCase="'select'" [formControlName]="filter.name">
+              <mat-option value="">Todos</mat-option>
+              <mat-option *ngFor="let option of filter.options"
+                         [value]="option.value">
+                {{option.label}}
+              </mat-option>
+            </mat-select>
+            <input *ngSwitchCase="'text'"
+                   matInput
+                   [formControlName]="filter.name">
+          </ng-container>
+        </mat-form-field>
+      </ng-container>
+    </form>
+  </mat-dialog-content>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="onCancel()">Cancelar</button>
+    <button mat-raised-button 
+            color="primary" 
+            (click)="onApply()"
+            [disabled]="filterForm.invalid">
+      Aplicar
+    </button>
+  </mat-dialog-actions>
+</div> 

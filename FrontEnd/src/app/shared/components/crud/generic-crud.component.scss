@@ -1,0 +1,153 @@
+.generic-crud-container {
+  padding: 2%;
+  width: 96%;
+  box-sizing: border-box;
+  height: 100%;
+  overflow: hidden;
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background-color: #f8f9fa;
+    padding: 10px 0;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    flex-wrap: wrap;
+
+    .filter-field {
+      flex: 1;
+      min-width: 250px;
+      margin-bottom: 0;
+
+      ::ng-deep .mat-mdc-form-field-icon-prefix {
+        color: rgba(0, 0, 0, 0.54);
+        padding-right: 8px;
+      }
+
+      input {
+        padding-left: 8px;
+      }
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: nowrap;
+      
+      button {
+        white-space: nowrap;
+        min-width: auto;
+        padding: 0 16px;
+        
+        mat-icon {
+          margin-right: 8px;
+        }
+      }
+    }
+
+    h2 {
+      margin: 0;
+    }
+  }
+
+  .filter-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  mat-card {
+    background: white;
+    margin-bottom: 16px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  mat-card-content {
+    padding: 0 !important;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .mat-mdc-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  // Estilo para a barra de rolagem horizontal
+  mat-card-content::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  mat-card-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+  }
+  
+  mat-card-content::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+    
+    &:hover {
+      background: #666;
+    }
+  }
+
+  // Ajusta o comportamento do scroll apenas quando necessário
+  .table-responsive {
+    flex: 1;
+    overflow: hidden;
+    
+    &:hover {
+      overflow: auto;
+    }
+  }
+}
+
+// Responsividade ajustada
+@media (max-width: 768px) {
+  .generic-crud-container {
+    padding: 3%;
+    width: 94%;
+    height: calc(100vh - 64px);
+    overflow: hidden;
+
+    .header {
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 10px;
+      
+      .filter-field {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+      }
+      
+      .action-buttons {
+        flex: 0 0 auto;
+        width: auto;
+        gap: 10px;
+        
+        button {
+          flex: 0 0 auto;
+          min-width: auto;
+        }
+      }
+    }
+
+    .table-responsive {
+      overflow: auto;
+    }
+  }
+}
+
+// Adicionar suporte para navegadores diferentes
+.table-responsive {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+} 

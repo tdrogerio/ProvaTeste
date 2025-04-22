@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  min-width: 300px;
+}
+
+mat-dialog-content {
+  min-height: 100px;
+  padding: 20px 0;
+}
+
+mat-dialog-actions {
+  padding: 16px 0;
+}
