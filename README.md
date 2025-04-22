@@ -70,3 +70,39 @@ cd backend
 dotnet restore
 dotnet build
 dotnet run
+
+### Frontend
+
+```bash
+Copiar
+Editar
+cd frontend
+npm install
+ng serve
+
+Acesse em: http://localhost:4200
+
+🧪 Testes Unitários
+Para executar os testes no backend:
+dotnet test
+
+Para executar os testes no frontend:
+ng test
+
+📁 Organização do Projeto
+frontend/: Código Angular
+backend/: Projeto .NET com estrutura DDD
+
+📄 Licença
+Este projeto está licenciado sob a Licença MIT - veja o arquivo LICENSE para detalhes.
+
+🔗 Links Úteis
+Angular Documentation
+
+.NET 8 Documentation
+
+Guia de DDD
+
+CQRS Pattern
+
+Event Sourcing
